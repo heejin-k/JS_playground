@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://kit.fontawesome.com/6924f9cd4d.js" crossorigin="anonymous"></script>
+    <script defer src="./js.js"></script>
+    <title></title>
+</head>
+
+<body>
+    <article id="app">
+        <ul class="options">
+            <li>
+                <button type="button" data-command="h1">H1</button>
+            </li>
+            <li>
+                <button type="button" data-command="h2">H2</button>
+            </li>
+            <!-- 요소에 데이터를 저장 자스에서 꺼내씀 -->
+            <li>
+                <button type="button" data-command="h3">H3</button>
+            </li>
+            <li>
+                <button type="button" data-command="p">P</button>
+            </li>
+            <li>
+                <button type="button" data-command="bold"> <i class="fa-solid fa-bold"></i></button>
+            </li>
+            <li>
+                <button type="button" data-command="italic"><i class="fa-solid fa-italic"></i></button>
+            </li>
+            <li>
+                <button type="button" data-command="underLine"><i class="fa-solid fa-underline"></i></button>
+            </li>
+            <li>
+                <button type="button" data-command="strikeThrough"><i class="fa-solid fa-strikethrough"></i></button>
+            </li>
+            <li>
+                <button type="button" data-command="justifyLeft"><i class="fa-solid fa-align-left"></i></button>
+            </li>
+            <li>
+                <button type="button" data-command="justifyCenter"><i class="fa-solid fa-align-center"></i></button>
+            </li>
+            <li>
+                <button type="button" data-command="justifyRight"><i class="fa-solid fa-align-right"></i></button>
+            </li>
+            <li>
+                <button type="button" data-command="justifyFull"><i class="fa-solid fa-align-justify"></i></button>
+            </li>
+        </ul>
+        <div class="editor" contenteditable="true">
+            <h1>나만의 wysiwyg 에디터</h1>
+            <p>hello world</p>
+        </div>
+    </article>
+</body>
+
+</html>
