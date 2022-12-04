@@ -8,18 +8,23 @@ gameMessage.addEventListener('click', start);
 document.addEventListener('keydown',pressOn);
 document.addEventListener('keyup',pressOff);
 let keys = {};
-let bird = document.createElement('div');
-let wing = document.createElement('div');
 let player = {
   x:0,
   y:0,
-  speed:5
+  speed:5,
+  score:0,
+  inplay: false
 };
 
 function start(){
   console.log('game start');
+  player.inplay = true;
+  player.score = 0;
+  gameArea.innerHTML= 0;
   gameMessage.classList.add('hide');
   startBtn.classList.add('hide');
+  let bird = document.createElement('div');
+  let wing = document.createElement('div');
   bird.setAttribute('class','bird');
   wing.setAttribute('class','wing');
   wing.pos = 15;
@@ -35,39 +40,53 @@ function start(){
 }
 
 function playGame(){
-  let move = false;
-  if(keys.ArrowLeft && player.x > 0){
-    player.x -= player.speed;
-    move = true;
+  if(player.inplay){
+    let bird = document.querySelector(".bird");
+    let wing = document.querySelector(".wing")
+    let move = false;
+    if(keys.ArrowLeft && player.x > 0){
+      player.x -= player.speed;
+      move = true;
+    }
+    if (keys.ArrowRight && player.x < gameArea.offsetWidth - bird.offsetWidth){
+      player.x += player.speed;
+      move = true;
+  
+    }
+    if((keys.ArrowUp || keys.Space) && player.y > 0){
+      player.y -= player.speed * 4 ;
+      move = true;
+  
+    }
+    if (keys.ArrowDown && player.y < gameArea.offsetHeight - bird.offsetHeight){
+      player.y += player.speed;
+      move = true;
+    }
+  
+    if(move){
+      wing.pos = wing.pos === 15 ? 25 : 15;
+      wing.style.top = wing.pos + 'px';
+    }
+    //중력 구현
+      player.y += player.speed * 2;
+      if(player.y > gameArea.offsetHeight){
+        console.log("game over");
+        playGameOver();
+      }
+    
+      bird.style.left = player.x +"px";
+      bird.style.top = player.y +"px";
+      window.requestAnimationFrame(playGame);
+      player.score ++ ;
+      score.innerText = "SCORE : " + player.score;
+    }
   }
-  if (keys.ArrowRight && player.x < gameArea.offsetWidth - bird.offsetWidth){
-    player.x += player.speed;
-    move = true;
 
-  }
-  if((keys.ArrowUp || keys.Space) && player.y > 0){
-    player.y -= player.speed * 4 ;
-    move = true;
 
-  }
-  if (keys.ArrowDown && player.y < gameArea.offsetHeight - bird.offsetHeight){
-    player.y += player.speed;
-    move = true;
-  }
-
-  if(move){
-    wing.pos = wing.pos === 15 ? 25 : 15;
-    wing.style.top = wing.pos + 'px';
-  }
-
-//중력 구현
-  player.y += player.speed * 2;
-
-  bird.style.left = player.x +"px";
-  bird.style.top = player.y +"px";
-
-  console.log("game playing");
-  window.requestAnimationFrame(playGame);
+function playGameOver(){
+  player.inplay = false;
+  gameMessage.classList.remove('hide');
+  gameMessage.innerHTML = "<p class='red'>GAME OVER!</p> SCORE :" + player.score + "<br/> 다시시작하기"
 }
 
 function pressOn(e){

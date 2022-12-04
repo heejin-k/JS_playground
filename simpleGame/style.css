@@ -46,3 +46,36 @@ body{
   width: 25px;
   background-size: cover;
 }
+
+.score {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: gold;
+  text-align: center;
+  height: 50px;
+  font-size: 1.5em;
+}
+
+
+.gameMessage{
+  position: fixed;
+  top: 100px;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  text-align: center;
+  background-color: darkblue;
+  font-size: 20px;
+  color: whitesmoke;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.red{
+  font-size: 30px;
+  color: red;
+  margin: 0;
+  padding-bottom: 10px;
+}
