@@ -45,20 +45,23 @@ function playGame(){
     move = true;
 
   }
-  if(keys.ArrowUp && player.y > 0){
-    player.y -= player.speed;
+  if((keys.ArrowUp || keys.Space) && player.y > 0){
+    player.y -= player.speed * 4 ;
     move = true;
 
   }
   if (keys.ArrowDown && player.y < gameArea.offsetHeight - bird.offsetHeight){
     player.y += player.speed;
     move = true;
-
   }
+
   if(move){
     wing.pos = wing.pos === 15 ? 25 : 15;
     wing.style.top = wing.pos + 'px';
   }
+
+//중력 구현
+  player.y += player.speed * 2;
 
   bird.style.left = player.x +"px";
   bird.style.top = player.y +"px";
